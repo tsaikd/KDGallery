@@ -1,0 +1,89 @@
+body {
+	background-color: #d7d8e8;
+	margin: 0;
+}
+
+a, a:visited {
+	color: blue;
+}
+
+a, a:hover {
+	text-decoration: none;
+}
+
+a:focus {
+	outline: none;
+}
+
+img {
+	border: none;
+}
+
+ul, li {
+	margin: 0;
+}
+
+ul {
+	padding-left: 1em;
+}
+
+#headerArea {
+	background-color: #5d4b97;
+	font-size: 1.5em;
+}
+
+#headerTitle {
+	color: white;
+	height: 35px;
+	line-height: 35px;
+	margin-left: 5px;
+}
+
+#showArea {
+border: solid 1px;
+}
+
+#showArea .jsData {
+	display: none;
+}
+
+#showArea .dirLink {
+	text-align: left;
+}
+
+#showArea .dirToolBar {
+	text-align: center;
+}
+
+#showArea .toolbarBtn {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#showArea .toolbarMsg {
+	margin-left: 5px;
+	margin-right: 5px;
+}
+
+#showArea .dirContents {
+	text-align: center;
+}
+
+#showArea .dirContents .treeDir {
+	color: blue;
+}
+
+#showArea .dirContents .treeFile {
+	color: green;
+}
+
+#showArea .picOtherSize {
+	text-align: left;
+	margin-left: 70px;
+}
+
+#showArea #dataPic {
+	text-align: center;
+	padding-top: 5px;
+}
+
