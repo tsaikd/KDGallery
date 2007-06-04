@@ -30,7 +30,7 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 	if (!isset($h))
 		$h = 0;
 	if (!isValidSize($w, $h))
-		return showErrorImage("invalid_size", $w, $h);
+		return showErrorImage("invalid_size", 200, 200);
 
 	if (is_dir($fpath))
 		return showErrorImage("path_is_dir", $w, $h);
