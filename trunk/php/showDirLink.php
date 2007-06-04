@@ -30,7 +30,7 @@ function showDirLink($vpath) {
 		if (is_dir($fpath))
 			logecho("<a id='pagelink' class='toolbarMsg' title='".$LANG["dataTree"]["permalink"]."' href='?fpath=".urlescape($vpath)."'>$f</a>");
 		else
-			logecho("<span class='toolbarMsg'>$f</span>");
+			logecho("<a id='pagelink' class='toolbarMsg' title='".$LANG["dataTree"]["permalink"]."' href='?picpath=".urlescape($vpath)."'>$f</a>");
 	}
 }
 

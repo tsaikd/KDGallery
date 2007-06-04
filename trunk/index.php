@@ -50,6 +50,7 @@ conf.info["totalPage"] = 1;
 
 conf.init = function() {
 	var fpath = unescape("<?=$_REQUEST["fpath"]?>");
+	var picpath = unescape("<?=$_REQUEST["picpath"]?>");
 	var cpnum = "<?=$_REQUEST["cpnum"]?>";
 
 	if (fpath == "")
@@ -57,7 +58,10 @@ conf.init = function() {
 	if (cpnum == "")
 		cpnum = "1";
 
-	setDir(fpath, cpnum);
+	if (picpath != "")
+		showPicPage(picpath);
+	else
+		setDir(fpath, cpnum);
 
 	if (isMSIE) {
 		var obj = document.getElementById("toolbar");
