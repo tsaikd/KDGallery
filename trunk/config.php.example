@@ -34,7 +34,7 @@ $CONF["language"] = "zh_TW";
 # IMPORTANT: 即使不啟用快取，系統仍然需要此目錄
 $CONF["path"]["cache"] = "cache";
 # (string Path) 資料的路徑 (http server 需可讀取)
-$CONF["path"]["data"] = "/home/tsaikd/share/photo";
+$CONF["path"]["data"] = "data";
 
 ############################################################
 # 功能設定
@@ -48,9 +48,9 @@ $CONF["func"]["version"]["enable"] = true;
 # (bool) 快取控制總開關，若要啟用任一快取，請將此選項啟動
 $CONF["cache"]["enable"] = true;
 # (bool) 快取 css 檔
-$CONF["cache"]["css"]["enable"] = false;
+$CONF["cache"]["css"]["enable"] = true;
 # (bool) 快取 javascript 檔
-$CONF["cache"]["js"]["enable"] = false;
+$CONF["cache"]["js"]["enable"] = true;
 # (bool) 快取縮圖
 $CONF["cache"]["image"]["enable"] = true;
 

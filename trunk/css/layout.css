@@ -27,6 +27,10 @@ ul {
 	padding-left: 1em;
 }
 
+.jsData {
+	display: none;
+}
+
 #headerArea {
 	background-color: #5d4b97;
 	font-size: 1.5em;
@@ -39,23 +43,15 @@ ul {
 	margin-left: 5px;
 }
 
-#showArea {
-border: solid 1px;
-}
-
-#showArea .jsData {
-	display: none;
-}
-
-#showArea .dirLink {
-	text-align: left;
-}
-
-#showArea .dirToolBar {
+#toolbar {
 	text-align: center;
 }
 
-#showArea .toolbarBtn {
+#toolbar .dirLink {
+	text-align: left;
+}
+
+#toolbar .toolbarMsg {
 	margin-left: 5px;
 	margin-right: 5px;
 }
@@ -69,17 +65,13 @@ border: solid 1px;
 	text-align: center;
 }
 
-#showArea .dirContents .treeDir {
-	color: blue;
-}
-
-#showArea .dirContents .treeFile {
-	color: green;
-}
-
 #showArea .picOtherSize {
 	text-align: left;
 	margin-left: 70px;
+}
+
+#showArea .treeFile {
+	color: green;
 }
 
 #showArea #dataPic {

@@ -2,16 +2,17 @@
 include_once("config.php");
 include_once("php/parseXml.php");
 include_once("php/basename_ex.php");
-include_once("php/dirname_ex.php");
 
 /*
 $recur don't effect at $type == "name"
 */
 function getPathInfo($fpath, $type, $recur=false) {
 	global $CONF;
-	$dpath = dirname_ex($fpath);
-	if (($dpath == ".") || ($dpath == $CONF["path"]["root"]))
-		return null;
+	$dpath = dirname($fpath);
+	if (($dpath == ".")
+		|| ($dpath == $CONF["path"]["root"])
+		|| ($fpath == $CONF["path"]["data"]))
+		return;
 	if ($recur)
 		$res = getPathInfo($dpath, $type, $recur);
 

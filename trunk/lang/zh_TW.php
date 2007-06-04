@@ -16,6 +16,7 @@ $LANG["message"]["runNewWin"] = "此動作將會在新視窗中執行";
 
 $LANG["dataTree"]["noAlbum"] = "尚未建立相簿";
 $LANG["dataTree"]["home"] = "首頁";
+$LANG["dataTree"]["permalink"] = "連結";
 
 $LANG["dataPic"]["notFile"] = "找不到檔案";
 
@@ -23,7 +24,7 @@ $LANG["picToolBar"]["prevPage"] = "上一頁";
 $LANG["picToolBar"]["nextPage"] = "下一頁";
 $LANG["picToolBar"]["firstPage"] = "第一頁";
 $LANG["picToolBar"]["lastPage"] = "最末頁";
-$LANG["picToolBar"]["fTotalPage"] = "總共 %d 頁";
+$LANG["picToolBar"]["fTotalPage"] = "總共 %s 頁";
 $LANG["picToolBar"]["otherSize"] = "其他大小";
 $LANG["picToolBar"]["origPic"] = "原始圖片";
 

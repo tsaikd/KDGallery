@@ -1,7 +1,5 @@
-function getDataContents(fpath, page) {
+function showPicPage(fpath) {
 	var showObj = document.getElementById("showArea");
-	if (page == undefined)
-		page = 1;
 
 	var ajax = createAjax();
 	ajax.onreadystatechange = function() {
@@ -10,7 +8,8 @@ function getDataContents(fpath, page) {
 		} else if (ajax.readyState == 4) {
 			if (ajax.status == 200) {
 				showObj.innerHTML = ajax.responseText;
-				updateToolBar();
+
+				updatePicToolBar(fpath);
 			} else {
 				alert('There was a problem with the request.');
 			}
@@ -19,6 +18,6 @@ function getDataContents(fpath, page) {
 	ajax.open("POST", "data.php", true);
 	ajax.setRequestHeader("Content-Type", 
 		"application/x-www-form-urlencoded; charset=utf-8");
-	ajax.send("ftype=dataContents&fpath="+URLencode(fpath)+"&page="+page);
+	ajax.send("ftype=picPage&fpath="+URLencode(fpath));
 }
 

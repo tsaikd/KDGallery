@@ -35,9 +35,34 @@ lang = {};
 lang.msg = {};
 lang.msg.loading = "<?=$LANG["msg"]["loading"]?>";
 
+lang.picToolBar = {};
+lang.picToolBar.prevPage = "<?=$LANG["picToolBar"]["prevPage"]?>";
+lang.picToolBar.nextPage = "<?=$LANG["picToolBar"]["nextPage"]?>";
+lang.picToolBar.firstPage = "<?=$LANG["picToolBar"]["firstPage"]?>";
+lang.picToolBar.lastPage = "<?=$LANG["picToolBar"]["lastPage"]?>";
+
 conf = {};
+conf.info = {};
+conf.info["pwd"] = "data";
+conf.info["pages"] = "1";
+conf.info["cpnum"] = 1;
+conf.info["totalPage"] = 1;
+
 conf.init = function() {
-	getDataContents("data", 1);
+	var fpath = unescape("<?=$_REQUEST["fpath"]?>");
+	var cpnum = "<?=$_REQUEST["cpnum"]?>";
+
+	if (fpath == "")
+		fpath = "data";
+	if (cpnum == "")
+		cpnum = "1";
+
+	setDir(fpath, cpnum);
+
+	if (isMSIE) {
+		var obj = document.getElementById("toolbar");
+		obj.width = "";
+	}
 }
 		</script>
 	</head>
@@ -45,7 +70,24 @@ conf.init = function() {
 		<div id="headerArea">
 			<a onfocus='this.blur()' id='headerTitle' href="<?=$CONF["link"]?>"><?=$CONF["title"]?></a>
 		</div>
+		<table id='toolbar' align='center' width='100%'>
+		<tr><td colspan='3' id='toolbar_dirLink' class='dirLink'>
+		</td><td id='toolbar_totalPage'>
+		</td></tr>
+		<tr><td id='toolbar_prev'>
+		</td><td width='400' colspan='2' id='toolbar_pageNum'>
+		</td><td id='toolbar_next'>
+		</td></tr>
+		</table>
 		<div id="showArea"></div>
+<?php if (0) : ?>
+		<div id="info" class="jsData">
+			<div id="info_pwd">data</div>
+			<div id="info_pages">1</div>
+			<div id="info_cpnum">1</div>
+			<div id="info_totalPage">1</div>
+		</div>
+<?php endif ?>
 <?php
 if ($CONF["extraFooter"])
 	foreach ($CONF["extraFooter"] as $f)

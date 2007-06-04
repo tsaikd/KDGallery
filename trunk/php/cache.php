@@ -1,10 +1,14 @@
 <?php
 include_once("config.php");
 
-/*
+if (!isset($CONF["path"]["cache"]))
+	die('$CONF["path"]["cache"] is not set');
+if (!isset($CONF["func"]["cache"]["maxSize"]))
+	die('$CONF["func"]["cache"]["maxSize"] is not set');
+
 function touch_state_file($name, $offset=2) {
-	global $BLOGCONF;
-	$path = $BLOGCONF["state"][$name];
+	global $CONF;
+	$path = $CONF["state"][$name];
 
 	$t = time() + $offset;
 	$fp = fopen($path, "w");
@@ -14,8 +18,8 @@ function touch_state_file($name, $offset=2) {
 }
 
 function is_state_old($name) {
-	global $BLOGCONF;
-	$path = $BLOGCONF["state"][$name];
+	global $CONF;
+	$path = $CONF["state"][$name];
 
 	if (!file_exists($path))
 		return true;
@@ -29,11 +33,10 @@ function is_state_old($name) {
 }
 
 function set_state_old($name) {
-	global $BLOGCONF;
-	$path = $BLOGCONF["state"][$name];
+	global $CONF;
+	$path = $CONF["state"][$name];
 	touch($path);
 }
-//*/
 
 /*
 flag:
@@ -210,9 +213,7 @@ function rmCacheInfo($cpath) {
 	touch($lockpath);
 	$farray = file($infopath);
 	$iTotalSize = (int)array_shift($farray) - $fsize - strlen($cpath)-1;
-var_dump($farray);
 	$k = array_search($cpath."\n", $farray);
-var_dump($k);
 	if ($k === false) {
 		unlink($lockpath);
 		return false;
@@ -221,7 +222,6 @@ var_dump($k);
 
 	$fp = fopen($infopath, "w");
 	fwrite($fp, sprintf("%-19d\n", $iTotalSize));
-var_dump($farray);
 	foreach ($farray as $f)
 		fwrite($fp, $f);
 	fclose($fp);

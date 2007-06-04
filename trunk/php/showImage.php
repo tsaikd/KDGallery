@@ -32,20 +32,12 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 	if (!isValidSize($w, $h))
 		return showErrorImage("invalid_size", $w, $h);
 
-	if (is_dir($fpath)) {
-		include_once("php/getDir.php");
-		$farray = getDir($fpath);
-		foreach ($farray as $f) {
-			if (is_file("$fpath/$f")) {
-				$img = "$fpath/$f";
-				break;
-			}
-		}
-		if (!isset($img))
-			return showErrorImage("path_is_dir", $w, $h);
-	} else {
+	if (is_dir($fpath))
+		return showErrorImage("path_is_dir", $w, $h);
+	else
 		$img = $fpath;
-	}
+
+	$fname = basename_ex($img);
 
 	global $CONF;
 	if ($CONF["cache"]["enable"] && $CONF["cache"]["image"]["enable"]) {
@@ -60,6 +52,7 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 			$ftime = filectime($cpath);
 			header('Last-Modified: '.date(DATE_RFC2822, $ftime));
 			header('Expires: '.date(DATE_RFC2822, $ftime+86400));
+			header('Content-Disposition: filename="'.$w.'x'.$h.'_'.$fname.'"');
 			header("Content-type: ".image_type_to_mime_type($ctype));
 			readfile($cpath);
 			return;
@@ -77,6 +70,7 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 		$ftime = filectime($img);
 		header('Last-Modified: '.date(DATE_RFC2822, $ftime));
 		header('Expires: '.date(DATE_RFC2822, $ftime+86400));
+		header('Content-Disposition: filename="'.$fname.'"');
 		header("Content-type: ".$mime);
 		readfile($img);
 		return;
@@ -104,6 +98,7 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 	$ftime = filectime($img);
 	header('Last-Modified: '.date(DATE_RFC2822, $ftime));
 	header('Expires: '.date(DATE_RFC2822, $ftime+86400));
+	header('Content-Disposition: filename="'.$w.'x'.$h.'_'.$fname.'"');
 	if (!$im) {
 		return showErrorImage("image_create_failed", $w, $h);
 		// We get errors from PHP's ImageCreate functions...
