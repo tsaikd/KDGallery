@@ -53,15 +53,16 @@ conf.init = function() {
 	var picpath = unescape("<?=$_REQUEST["picpath"]?>");
 	var cpnum = "<?=$_REQUEST["cpnum"]?>";
 
+	if (picpath != "")
+		fpath = dirname(picpath);
 	if (fpath == "")
 		fpath = "data";
 	if (cpnum == "")
 		cpnum = "1";
 
+	setDir(fpath, cpnum);
 	if (picpath != "")
 		showPicPage(picpath);
-	else
-		setDir(fpath, cpnum);
 
 	if (isMSIE) {
 		var obj = document.getElementById("toolbar");

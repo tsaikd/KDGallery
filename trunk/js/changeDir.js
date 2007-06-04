@@ -12,7 +12,7 @@ function setDir(fpath, cpnum) {
 	setInfo("pages", pages);
 	setInfo("cpnum", cpnum);
 
-	getDataContents(fpath, cpnum);
+	getDataContentsSync(fpath, cpnum);
 }
 
 function enterDir(name) {

@@ -22,3 +22,18 @@ function getDataContents(fpath, page) {
 	ajax.send("ftype=dataContents&fpath="+URLencode(fpath)+"&page="+page);
 }
 
+function getDataContentsSync(fpath, page) {
+	var showObj = document.getElementById("showArea");
+	if (page == undefined)
+		page = 1;
+
+	var ajax = createAjax();
+	ajax.open("POST", "data.php", false);
+	ajax.setRequestHeader("Content-Type", 
+		"application/x-www-form-urlencoded; charset=utf-8");
+	ajax.send("ftype=dataContents&fpath="+URLencode(fpath)+"&page="+page);
+
+	showObj.innerHTML = ajax.responseText;
+	updateToolBar();
+}
+

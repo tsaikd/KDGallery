@@ -114,6 +114,12 @@ function updatePicToolBar(fpath) {
 
 	obj = document.getElementById("toolbar_totalPage");
 	obj = obj.getElementsByTagName("span")[0];
+	if (isMSIE) {
+		if (obj == null) {
+			setTimeout("updatePicToolBar('"+fpath+"');", 200);
+			return;
+		}
+	}
 	obj = obj.getElementsByTagName("span")[0];
 	obj.innerHTML = totalPage;
 
