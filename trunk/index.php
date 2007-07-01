@@ -71,7 +71,7 @@ conf.init = function() {
 }
 		</script>
 	</head>
-	<body>
+	<body onkeydown="hotkey(event)">
 		<div id="headerArea">
 			<a onfocus='this.blur()' id='headerTitle' href="<?=$CONF["link"]?>"><?=$CONF["title"]?></a>
 		</div>

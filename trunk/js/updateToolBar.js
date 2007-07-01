@@ -112,6 +112,11 @@ function updatePicToolBar(fpath) {
 	var next = node.childNodes[2].childNodes[2].innerHTML;
 	var last = node.childNodes[2].childNodes[3].innerHTML;
 
+	first = escape(first);
+	prev = escape(prev);
+	next = escape(next);
+	last = escape(last);
+
 	obj = document.getElementById("toolbar_totalPage");
 	obj = obj.getElementsByTagName("span")[0];
 	if (isMSIE) {
@@ -126,10 +131,10 @@ function updatePicToolBar(fpath) {
 	// set toolbar_prev
 	buf = "";
 	if (first.length) {
-		buf += "<a class='toolbarMsg' href='javascript: showPicPage(\""+first+"\");'>";
+		buf += "<a class='toolbarMsg' title='(z)' href='javascript: showPicPage(\""+first+"\");'>";
 		buf += lang.picToolBar.firstPage;
 		buf += "</a>";
-		buf += "<a class='toolbarMsg' href='javascript: showPicPage(\""+prev+"\");'>";
+		buf += "<a class='toolbarMsg' title='(x)' href='javascript: showPicPage(\""+prev+"\");'>";
 		buf += lang.picToolBar.prevPage;
 		buf += "</a>";
 	} else {
@@ -146,10 +151,10 @@ function updatePicToolBar(fpath) {
 	// set toolbar_next
 	buf = "";
 	if (last.length) {
-		buf += "<a class='toolbarMsg' href='javascript: showPicPage(\""+next+"\");'>";
+		buf += "<a class='toolbarMsg' title='(c)' href='javascript: showPicPage(\""+next+"\");'>";
 		buf += lang.picToolBar.nextPage;
 		buf += "</a>";
-		buf += "<a class='toolbarMsg' href='javascript: showPicPage(\""+last+"\");'>";
+		buf += "<a class='toolbarMsg' title='(v)' href='javascript: showPicPage(\""+last+"\");'>";
 		buf += lang.picToolBar.lastPage;
 		buf += "</a>";
 	} else {

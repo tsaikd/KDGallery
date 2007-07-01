@@ -27,6 +27,8 @@ function enterDir(name) {
 }
 
 function leaveDir(level) {
+	if (level < 1)
+		level = 1;
 	var fpath = getInfo("pwd");
 	var aPage = getInfo("pages").split(",");
 	var buf = fpath.split("/");
@@ -56,5 +58,69 @@ function pageDir(page) {
 	setInfo("cpnum", page)
 
 	getDataContents(fpath, page);
+}
+
+// num == -2 : first page if possible
+// num == -1 : prev page if possible
+// num == 1  : next page if possible
+// num == 2  : last page if possible
+function chDir(num) {
+	var cpnum = parseInt(getInfo("cpnum"));
+	var totalPage = parseInt(getInfo("totalPage"));
+
+	switch (num) {
+	case -2:
+		if (cpnum <= 1)
+			return;
+		pageDir(1);
+		break;
+	case -1:
+		if (cpnum <= 1)
+			return;
+		pageDir(cpnum-1);
+		break;
+	case 1:
+		if (cpnum >= totalPage)
+			return;
+		pageDir(cpnum+1);
+		break;
+	case 2:
+		if (cpnum >= totalPage)
+			return;
+		pageDir(totalPage);
+		break;
+	default:
+		alert("chDir(): Invalid page number");
+		break;
+	}
+}
+
+// num == -2 : first pic if possible
+// num == -1 : prev pic if possible
+// num == 1  : next pic if possible
+// num == 2  : last pic if possible
+function chPic(num) {
+	var obj;
+
+	switch (num) {
+	case -2:
+		obj = document.getElementById("toolbar_prev").firstChild;
+		break;
+	case -1:
+		obj = document.getElementById("toolbar_prev").lastChild;
+		break;
+	case 1:
+		obj = document.getElementById("toolbar_next").firstChild;
+		break;
+	case 2:
+		obj = document.getElementById("toolbar_next").lastChild;
+		break;
+	default:
+		alert("chPic(): Invalid pic number");
+		return;
+	}
+
+	var path = unescape(obj.href);
+	eval(path);
 }
 

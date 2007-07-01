@@ -50,7 +50,7 @@ function showFileInfo($vpath) {
 		logecho("<div>".$vdpath."/".$farray[$k+1]."</div>");
 	else
 		logecho("<div></div>");
-	if (isset($farray[$totalPage-1]))
+	if (($k < ($totalPage-1)) && isset($farray[$totalPage-1]))
 		logecho("<div>".$vdpath."/".$farray[$totalPage-1]."</div>");
 	else
 		logecho("<div></div>");
