@@ -4,9 +4,13 @@ function setDir(fpath, cpnum) {
 	if (cpnum == null)
 		cpnum = 1;
 
-	for (var i=1 ; i<buf.length-1 ; i++)
-		pages += ",1";
-	pages += ","+cpnum;
+	if (buf.length > 1) {
+		for (var i=1 ; i<buf.length-1 ; i++)
+			pages += ",1";
+		pages += ","+cpnum;
+	} else {
+		pages = cpnum;
+	}
 
 	setInfo("pwd", fpath);
 	setInfo("pages", pages);
