@@ -1,6 +1,7 @@
 <?php
 include_once("config.php");
 include_once("php/transPath.php");
+include_once("php/getFileType.php");
 include_once("php/getPathInfo.php");
 include_once("php/getDir.php");
 include_once("php/imageSize.php");
@@ -60,8 +61,10 @@ function showDataContents($vpath, $page) {
 		$name = getPathInfo("$dpath/$f", "name");
 		if (is_dir("$dpath/$f")) {
 			logecho("<a class='treeDir' href='javascript: enterDir(\"$f\")'>");
-		} else {
+		} else if (@getimagesize("$dpath/$f")) {
 			logecho("<a class='treeFile' href='javascript: showPicPage(\"$vpath/$f\")'>");
+		} else {
+			logecho("<a class='treeFile'>");
 		}
 		$pw = getPathInfo("$dpath/$f", "password", true);
 		if (isset($pw))

@@ -2,6 +2,7 @@
 include_once("config.php");
 include_once("php/transPath.php");
 include_once("php/imageSize.php");
+include_once("php/getFileType.php");
 include_once("php/getPathInfo.php");
 
 function showErrorImage($type, $w, $h) {
@@ -61,7 +62,6 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 
 	$x = @getimagesize($img);
 	if (!$x) {
-		include_once("php/getFileType.php");
 		$t = getFileType($img);
 		if ($t == "application/x-shellscript")
 			return showErrorImage("shellscript", $w, $h);
