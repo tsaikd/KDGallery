@@ -60,8 +60,16 @@ function showImage($vpath, $w, $h, $ctype=IMAGETYPE_JPEG) {
 	}
 
 	$x = @getimagesize($img);
-	if (!$x)
-		return showErrorImage("unknown_image_type", $w, $h);
+	if (!$x) {
+		include_once("php/getFileType.php");
+		$t = getFileType($img);
+		if ($t == "application/x-shellscript")
+			return showErrorImage("shellscript", $w, $h);
+		else if ($t == "text/plain")
+			return showErrorImage("text", $w, $h);
+		else
+			return showErrorImage("unknown_image_type", $w, $h);
+	}
 	$sw = $x[0];
 	$sh = $x[1];
 	$mime = $x["mime"];

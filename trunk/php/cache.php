@@ -6,38 +6,6 @@ if (!isset($CONF["path"]["cache"]))
 if (!isset($CONF["func"]["cache"]["maxSize"]))
 	die('$CONF["func"]["cache"]["maxSize"] is not set');
 
-function touch_state_file($name, $offset=2) {
-	global $CONF;
-	$path = $CONF["state"][$name];
-
-	$t = time() + $offset;
-	$fp = fopen($path, "w");
-	fwrite($fp, $t);
-	fclose($fp);
-	touch($path, $t);
-}
-
-function is_state_old($name) {
-	global $CONF;
-	$path = $CONF["state"][$name];
-
-	if (!file_exists($path))
-		return true;
-
-	$stime = (int)file_get_contents($path);
-	$ftime = filectime($path);
-	if ($ftime > $stime)
-		return true;
-	else
-		return false;
-}
-
-function set_state_old($name) {
-	global $CONF;
-	$path = $CONF["state"][$name];
-	touch($path);
-}
-
 /*
 flag:
 	0x01: log
@@ -58,8 +26,8 @@ input:
 	"enable"			=> bool
 	"cachePath"			=> string path
 	"bSendHeader"		=> bool send cache header (option)
+							default: false
 	"isValidCacheProc"	=> function callback with param $cInfo (option)
-	"preShowProc"		=> function callback with param $cInfo (option)
 	"showDataProc"		=> function callback with param $cInfo
 addition:
 	"doCache"			=> bool regenerate cache file or not
@@ -85,16 +53,13 @@ function getGenCache(&$cInfo) {
 		$doCache = false;
 	$cInfo["doCache"] = $doCache;
 
-	if ($cInfo["preShowProc"])
-		$cInfo["preShowProc"]($cInfo);
-
 	if ($cInfo["bSendHeader"]) {
 		if ($doCache)
 			$ftime = time();
 		else
-			$ftime = filectime($cInfo["cachepath"]);
+			$ftime = filectime($cInfo["cachePath"]);
 		header('Last-Modified: '.date(DATE_RFC2822, $ftime));
-		header('Expires: '.date(DATE_RFC2822, $ftime+86400));
+		header('Expires: '.date(DATE_RFC2822, time()+86400));
 	}
 
 	if ($doCache) {
