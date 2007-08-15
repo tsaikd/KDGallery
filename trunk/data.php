@@ -52,12 +52,20 @@ case "picPage":
 
 	include_once("php/transPath.php");
 	if (!is_file(transPathV2R($fpath))) {
-		echo("invalid file");
+		echo("Invalid file path '$fpath'");
 		break;
 	}
 
 	include_once("php/showDataPicture.php");
 	showDataPicture($fpath);
+	break;
+case "picSize":
+	include_once("php/showPicSize.php");
+	include_once("php/urlescape.php");
+	$fpath = urlunescape($_REQUEST["fpath"]);
+	$w = urlunescape($_REQUEST["w"]);
+	$h = urlunescape($_REQUEST["h"]);
+	showPicSize($fpath, $w, $h);
 	break;
 case "image":
 	include_once("php/showImage.php");
