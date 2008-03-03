@@ -70,6 +70,10 @@ ul {
 	margin-left: 70px;
 }
 
+#showArea .picOtherSizeSpan {
+	display: none;
+}
+
 #showArea .treeFile {
 	color: green;
 }

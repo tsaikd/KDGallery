@@ -26,7 +26,7 @@ function showDataPicture($vpath) {
 	// show toolbar
 	logecho("<div class='picOtherSize'>");
 	logecho("<a class='toolbarMsg' href='javascript:;' onclick='javascript: toggleObj(this.nextSibling, \"inline\");'>".$LANG["picToolBar"]["otherSize"]."</a>");
-	logecho("<span style='display: none;'>");
+	logecho("<span class='picOtherSizeSpan'>");
 	foreach ($picValidSize as $s) {
 		if ($s == "0x0") {
 			logecho("<a class='toolbarMsg' target='_blank' href='".getImageUrl($vpath, $s)."'>");
