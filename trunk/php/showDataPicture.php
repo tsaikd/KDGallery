@@ -39,8 +39,8 @@ function showDataPicture($vpath) {
 					logecho("<a target=\\\"_blank\\\" href=\\\"");
 						logecho($CONF["link"]."?picpath=".urlescape($vpath));
 					logecho("\\\"><img style=\\\"border: none;\\\" src=\\\"");
-						logecho($CONF["link"].getImageUrl($vpath, $w."x".$h));
-					logecho("\\\" width=\\\"$w\\\" height=\\\"$h\\\" /></a>");
+						logecho($CONF["link"].getImageUrl($vpath, $s));
+					logecho("\\\" /></a>");
 			logecho("\")'>");
 			logecho($s);
 		}
@@ -53,7 +53,7 @@ function showDataPicture($vpath) {
 			logecho($CONF["link"]."?picpath=".urlescape($vpath));
 		logecho("\"><img style=\"border: none;\" src=\"");
 			logecho($CONF["link"].getImageUrl($vpath, $w."x".$h));
-		logecho("\" width=\"$w\" height=\"$h\" /></a>");
+		logecho("\" /></a>");
 	logecho("' />");
 	logecho("</span>");
 	logecho("</div>");
