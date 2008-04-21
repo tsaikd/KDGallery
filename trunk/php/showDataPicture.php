@@ -32,11 +32,29 @@ function showDataPicture($vpath) {
 			logecho("<a class='toolbarMsg' target='_blank' href='".getImageUrl($vpath, $s)."'>");
 			logecho($LANG["picToolBar"]["origPic"]);
 		} else {
-			logecho("<a class='toolbarMsg' href='javascript: changeImageSize(\"".getImageUrl($vpath, $s)."\")'>");
+			list($w, $h) = sscanf($s, "%dx%d");
+			logecho("<a class='toolbarMsg' href='javascript: changeImageSize(\"");
+					logecho(getImageUrl($vpath, $s));
+				logecho("\", \"");
+					logecho("<a target=\\\"_blank\\\" href=\\\"");
+						logecho($CONF["link"]."?picpath=".urlescape($vpath));
+					logecho("\\\"><img style=\\\"border: none;\\\" src=\\\"");
+						logecho($CONF["link"].getImageUrl($vpath, $w."x".$h));
+					logecho("\\\" width=\\\"$w\\\" height=\\\"$h\\\" /></a>");
+			logecho("\")'>");
 			logecho($s);
 		}
 		logecho("</a>");
 	}
+	$w = $CONF["func"]["image"]["showPicWidth"];
+	$h = $CONF["func"]["image"]["showPicHeight"];
+	logecho("<input id='picLink' tye='text' readonly size='30' value='");
+		logecho("<a target=\"_blank\" href=\"");
+			logecho($CONF["link"]."?picpath=".urlescape($vpath));
+		logecho("\"><img style=\"border: none;\" src=\"");
+			logecho($CONF["link"].getImageUrl($vpath, $w."x".$h));
+		logecho("\" width=\"$w\" height=\"$h\" /></a>");
+	logecho("' />");
 	logecho("</span>");
 	logecho("</div>");
 
