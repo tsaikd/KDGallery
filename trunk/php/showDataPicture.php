@@ -40,7 +40,7 @@ function showDataPicture($vpath) {
 						logecho($CONF["link"]."?picpath=".urlescape($vpath));
 					logecho("\\\"><img style=\\\"border: none;\\\" src=\\\"");
 						logecho($CONF["link"].getImageUrl($vpath, $s));
-					logecho("\\\" /></a>");
+					logecho("\\\" alt=\\\"$fname\\\"/></a>");
 			logecho("\")'>");
 			logecho($s);
 		}
@@ -53,7 +53,7 @@ function showDataPicture($vpath) {
 			logecho($CONF["link"]."?picpath=".urlescape($vpath));
 		logecho("\"><img style=\"border: none;\" src=\"");
 			logecho($CONF["link"].getImageUrl($vpath, $w."x".$h));
-		logecho("\" /></a>");
+		logecho("\" alt=\"$fname\" /></a>");
 	logecho("' />");
 	logecho("</span>");
 	logecho("</div>");
