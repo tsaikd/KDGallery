@@ -18,7 +18,7 @@ $CONF["title"] = "KD's Gallery";
 $CONF["language"] = "zh_TW";
 
 # (string Path) 額外的自定 footer，需使用 php 語言
-#$BLOGCONF["extraFooter"][0] = "php/google_analytics.php";
+#$CONF["extraFooter"][0] = "php/google_analytics.php";
 
 ############################################################
 # 路徑設定
